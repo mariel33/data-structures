@@ -1,0 +1,40 @@
+var inLine = ["Vivian", "Ava", "Josh", "Patrick", "Mike"];
+
+function nextInLine(arr, name){
+    arr.push(name);
+    console.log(arr);
+}
+
+function findPerson(arr, name) {
+  for(let i = 0; i < arr.length; i++) {
+    if (arr[i] === name) {
+      return (arr.indexOf(name));
+    }
+  }
+   return "not in line";
+}
+      
+
+function cutLine(arr, name) {
+    arr.splice(1, 0, name);
+    console.log(arr);
+}
+
+function leaveLine(arr, name){
+    const index = arr.indexOf(name);
+    if (index !== 1) {
+        arr.splice(index, 1);
+    }console.log(arr);
+} 
+
+nextInLine(inLine, "Mary");
+findPerson(inLine, "Josh");
+findPerson(inLine, "Emily");
+cutLine(inLine, "Melissa");
+leaveLine(inLine, "Patrick");
+
+
+2. Another real-world example we could model using a data structure would be a music playlist.
+3. Each song would have a number, an artist, and song title. 
+Developers could access and manipulate the data through the index of each song.
+They could add or remove songs, sort the songs by artist or song title.
