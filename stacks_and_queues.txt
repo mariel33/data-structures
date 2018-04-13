@@ -1,0 +1,42 @@
+1. The main difference between a stack and a queue is where the data structure is taking the next object from;
+-A stack will take the top object (most recent)
+-A queue is more like a first-come-first-serve line
+
+2. Stacks and queues are alike in that they are both data structures that prioritize the next object to be processed.
+
+3. The UNDO and REDO options in Word would use a stack, because the user is referring to their most recent action.
+
+Programming Questions
+
+1. function reverseString(str) {
+    var newString = [];
+    for(let i = 0; i <= str.length; i++) {
+        newString.push(str.charAt(str.length - i)); 
+    } return newString.join('');
+}
+//test
+console.log(reverseString("hello"));
+console.log(reverseString("Bloc!"));
+
+2.
+
+function deleteFromQueue(items) {
+    var queue = [];
+    for(let i = 0; i < items.length; i++) {
+        queue.push(items[i]);
+    }
+    queue.pop();
+    return queue;
+}
+
+//test
+console.log(deleteFromQueue(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]));
+
+3. 
+var items = [];
+function enqueue(element) {
+    items.push(element);
+};
+function dequeue() {
+    items.shift():
+};
