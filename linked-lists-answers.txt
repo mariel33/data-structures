@@ -1,0 +1,57 @@
+1. Linked lists are better to use in terms of memory; each node is independent in memory so it will only use available memory location to store it.
+Arrays can be limited in size, but linked lists can grow to be very large.
+However, accessing elements from within the list can be inefficient since you have to start at the first node.
+Elements in an array can be accessed immediately by referencing the index of the element.
+
+2. A real world example of a linked list would be a CD playing on an old CD player. 
+You are not able to select the track you want to listen to.
+instead you need to skip through each song starting at the beginning until you reach the song.
+
+Programming Questions
+
+1. 
+ LinkedList.prototype.push = function(element) {
+     var node = new Node(element);
+     currentNode = this.head;
+     
+     if (!currentNode) {
+         this.head = node;
+         } else {
+             currentNode.next = currentNode;
+        }
+
+    currentNode.next = node;
+}
+
+2.
+LinkedList.prototype.removeDuplicates = function() {
+    currentNode = this.head;
+    while (currentNode != null) {
+        currentNode.next = currentNode;
+        while (currentNode.next != null) {
+            if (currentNode.val === currentNode.next.val) {
+                currentNode.next = currentNode.next.next;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+    }
+
+3.
+
+LinkedList.prototype.reverseList = function() {
+    currentNode = this.head;
+    secondNode = currentNode.next;
+
+    while(secondNode) {
+        const temp = secondNode.next;
+        secondNode.next = currentNode;
+        currentNode = secondNode;
+        secondNode = temp;
+    }
+
+    this.head.next = null;
+    this.head = currentNode;
+}
+
+
