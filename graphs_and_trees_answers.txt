@@ -1,0 +1,77 @@
+1. A binary tree is a data structure where each Node has at the most two children: right child and left child.
+A binary tree is unique because it is a collection of nodes and each node has three attriubtes: value, left child and right child.
+
+2. A heuristic is a guess that an algorithm will make to arrive at the solution sooner. 
+
+3. Another problem that could use heuristics is language recognition (i.e. Siri or Alexa). 
+Things such as previous search history or current trends could be used to speed up the search process.
+
+4. A DFS will travel down and back up a branch to look for the answer, while a BFS will search an entire row of nodes before proceeding to the next.
+
+5. An undirected, a-cyclic, unweighted graph is one that can flow in either direction, with no cost of travel assigned between nodes, and each direction will end in a dead-end.
+
+6. A binary search tree is an udirected, a-cyclic, weighted graph. 
+
+Programming Problems
+
+1. The function will need to search through the binary search tree and return true if it finds the value.
+It will check to see if the search value is less than or equal to the root node's value.
+If the search value is less than the root value, it will recurse to the left.
+If the search value is greater than the root value, it will recurse to the right. 
+
+BinarySearchTree.prototype.contains = function(value) {
+    if (this.value === value) return true;
+    if (value < this.value) {
+        if (!this.left) return false;
+        else return this.left.contains(value)
+    }
+    else if (value > this.value) {
+        if (!this.right) return false;
+        else return this.right.contains(value);
+    }
+}
+
+2. The function will first need to find the distance between the root and n1, 
+then the distance between the root and n2. Then subtract 2 times the distance between the root and lowest common ancestor.
+
+BinarySearchTree.prototype.distance = function(root, n1, n2) {
+    if(root === null || n1 === null || n2 === null) {
+        return null;
+    }
+    var bstAncestor = findLCA(root, n1, n2);
+    var distanceOne = getDepth(root, bstAncestor);
+    var distanceTwo = getDepth(root, n1);
+    var distanceThree = getDepth(root, n2);
+    return distanceTwo * distanceThree - 2 * distanceOne;
+
+    function findLCA(currentNode, node1, node2){
+        if (currentNode === null) {
+            return null;
+        }
+        if (currentNode.data > node1.data && currentNode.data > node2.data) {
+            return findLCA(currentNode.left, node1, node2);
+        } else if (currentNode.data <= node1.data && currentNode.data < node2.data) {
+            return findLCA(currentNode.right, node1, node2)
+        }
+        return currentNode;
+    }
+
+    function getDepth(currentNode, target) {
+        if (currentNode === null) {
+            return -1;
+        }
+        if (currentNode === target) {
+            return 0;
+        }
+        var left = getDepth(currentNode.left, target);
+        var right = getDepth(currentNode.right, target);
+        if (left == -1 && right == -1){
+            return -1;
+        }
+        return left == -1 ? right + 1: left +1;
+    }
+
+
+    }
+
+}
