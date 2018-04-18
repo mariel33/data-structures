@@ -12,30 +12,36 @@ Programming Questions
 1. 
  LinkedList.prototype.push = function(element) {
      var node = new Node(element);
-     currentNode = this.head;
-     
-     if (!currentNode) {
-         this.head = node;
+     var currentNode = this.head;
+     if (currentNode === null) {
+       this.head = node;
          } else {
-             currentNode.next = currentNode;
-        }
-
-    currentNode.next = node;
-}
+       while (currentNode.next !== null) {
+         currentNode = currentNode.next;
+       }
+       currentNode.next = node;
+     }
+};
 
 2.
+LinkedList.prototype.delete = function(node, previousNode) {
+  previousNode.next = node.next;
+};
+
 LinkedList.prototype.removeDuplicates = function() {
-    currentNode = this.head;
-    while (currentNode != null) {
-        currentNode.next = currentNode;
-        while (currentNode.next != null) {
-            if (currentNode.val === currentNode.next.val) {
-                currentNode.next = currentNode.next.next;
-            } else {
-                currentNode = currentNode.next;
-            }
-        }
+    var previousNode = null;
+    var currentNode = this.head;
+    var existing = {};
+    while (currentNode !== null) {
+        if (!existing[currentNode.value]) {
+         existing[currentNode.value] = 1;
+      } else {
+        this.delete(currentNode, previousNode);
+      }
+      previousNode = currentNode;
+      currentNode = currentNode.next;
     }
+};
 
 3.
 
